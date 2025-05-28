@@ -1,0 +1,121 @@
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Chào mừng đến với Shop Giày QL</h1>
+    <p>Hệ thống quản lý cửa hàng giày chuyên nghiệp</p>
+</div>
+
+<div class="row mt-4">
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card h-100 bg-primary-light">
+                <div class="card-body text-center">
+                    <i class="fas fa-shoe-prints fa-3x mb-3 text-primary"></i>
+                    <h5 class="card-title">Quản lý sản phẩm</h5>
+                    <p class="card-text">Thêm, sửa, xóa sản phẩm và danh mục</p>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">
+                        <i class="fas fa-arrow-right"></i> Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card h-100 bg-success-light">
+                <div class="card-body text-center">
+                    <i class="fas fa-shopping-cart fa-3x mb-3 text-success"></i>
+                    <h5 class="card-title">Quản lý đơn hàng</h5>
+                    <p class="card-text">Xem và quản lý đơn hàng, xuất hóa đơn</p>
+                    <a asp-controller="Order" asp-action="Index" class="btn btn-success">
+                        <i class="fas fa-arrow-right"></i> Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card h-100 bg-warning-light">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-bar fa-3x mb-3 text-warning"></i>
+                    <h5 class="card-title">Báo cáo thống kê</h5>
+                    <p class="card-text">Xem báo cáo doanh thu và xuất báo cáo</p>
+                    <a asp-controller="Report" asp-action="Sales" class="btn btn-warning">
+                        <i class="fas fa-arrow-right"></i> Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card dashboard-card h-100 bg-info-light">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x mb-3 text-info"></i>
+                    <h5 class="card-title">Quản lý tài khoản</h5>
+                    <p class="card-text">Quản lý người dùng và phân quyền</p>
+                    <a asp-controller="Account" asp-action="UserManagement" class="btn btn-info">
+                        <i class="fas fa-arrow-right"></i> Truy cập
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-6 offset-md-3 mb-4">
+            <div class="card dashboard-card bg-primary-light">
+                <div class="card-body text-center">
+                    <i class="fas fa-shopping-cart fa-3x mb-3 text-primary"></i>
+                    <h5 class="card-title">Đơn hàng của tôi</h5>
+                    <p class="card-text">Xem lịch sử đơn hàng và trạng thái</p>
+                    <a asp-controller="Order" asp-action="MyOrders" class="btn btn-primary">
+                        <i class="fas fa-arrow-right"></i> Xem đơn hàng
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<h2 class="mt-5 mb-4">Sản phẩm mới nhất</h2>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card product-card">
+                <div class="product-img-container">
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" class="product-img" alt="@product.Name">
+                    }
+                    else
+                    {
+                        <img src="/images/no-image.png" class="product-img" alt="No image">
+                    }
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text text-truncate">@product.Description</p>
+                    <p class="card-text">
+                        <span class="badge bg-info">@product.Category?.Name</span>
+                        <span class="badge bg-secondary">@product.Size</span>
+                        <span class="badge bg-secondary">@product.Color</span>
+                    </p>
+                    <p class="card-text fw-bold text-danger">@product.Price.ToString("#,##0") VNĐ</p>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="d-flex justify-content-between">
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Sửa
+                            </a>
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-info">
+                                <i class="fas fa-info-circle"></i> Chi tiết
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

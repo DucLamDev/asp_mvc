@@ -1,0 +1,160 @@
+@model Order
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="card">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Chi tiết đơn hàng #@Model.OrderNumber</h4>
+                <div>
+                    <a asp-action="Invoice" asp-route-id="@Model.Id" class="btn btn-light">
+                        <i class="fas fa-file-invoice"></i> Xem hóa đơn
+                    </a>
+                    <a asp-action="DownloadInvoice" asp-route-id="@Model.Id" class="btn btn-light">
+                        <i class="fas fa-download"></i> Tải PDF
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h5>Thông tin đơn hàng</h5>
+                        <p><strong>Mã đơn hàng:</strong> @Model.OrderNumber</p>
+                        <p><strong>Ngày đặt hàng:</strong> @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</p>
+                        <p>
+                            <strong>Trạng thái:</strong>
+                            @switch (Model.Status)
+                            {
+                                case OrderStatus.Pending:
+                                    <span class="badge bg-warning">Chờ xác nhận</span>
+                                    break;
+                                case OrderStatus.Confirmed:
+                                    <span class="badge bg-primary">Đã xác nhận</span>
+                                    break;
+                                case OrderStatus.Shipping:
+                                    <span class="badge bg-info">Đang giao hàng</span>
+                                    break;
+                                case OrderStatus.Delivered:
+                                    <span class="badge bg-success">Đã giao hàng</span>
+                                    break;
+                                case OrderStatus.Cancelled:
+                                    <span class="badge bg-danger">Đã hủy</span>
+                                    break;
+                            }
+                        </p>
+                        <p><strong>Tổng tiền:</strong> @Model.TotalAmount.ToString("#,##0") VNĐ</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Thông tin khách hàng</h5>
+                        <p><strong>Họ tên:</strong> @Model.CustomerName</p>
+                        <p><strong>Địa chỉ:</strong> @Model.Address</p>
+                        <p><strong>Số điện thoại:</strong> @Model.Phone</p>
+                        <p><strong>Email:</strong> @Model.Email</p>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Notes))
+                {
+                    <div class="mb-4">
+                        <h5>Ghi chú</h5>
+                        <p>@Model.Notes</p>
+                    </div>
+                }
+
+                <h5>Chi tiết sản phẩm</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th class="text-end">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderDetails)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            @if (item.Product != null && !string.IsNullOrEmpty(item.Product.ImageUrl))
+                                            {
+                                                <img src="@item.Product.ImageUrl" alt="@item.Product.Name" style="width: 50px; height: 50px; object-fit: contain; margin-right: 10px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="/images/no-image.png" alt="No image" style="width: 50px; height: 50px; object-fit: contain; margin-right: 10px;" />
+                                            }
+                                            <div>
+                                                <div>@item.Product?.Name</div>
+                                                <small class="text-muted">
+                                                    @if (item.Product != null)
+                                                    {
+                                                        <span>@item.Product.Size | @item.Product.Color | @item.Product.Brand</span>
+                                                    }
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>@item.UnitPrice.ToString("#,##0") VNĐ</td>
+                                    <td>@item.Quantity</td>
+                                    <td class="text-end">@item.Subtotal.ToString("#,##0") VNĐ</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
+                                <td class="text-end"><strong>@Model.TotalAmount.ToString("#,##0") VNĐ</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                @if (User.IsInRole("Admin") && Model.Status != OrderStatus.Delivered && Model.Status != OrderStatus.Cancelled)
+                {
+                    <div class="mt-4">
+                        <h5>Cập nhật trạng thái</h5>
+                        <form asp-action="UpdateStatus" method="post" class="d-flex align-items-center">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <select name="status" class="form-select me-2" style="width: auto;">
+                                <option value="0" selected="@(Model.Status == OrderStatus.Pending)">Chờ xác nhận</option>
+                                <option value="1" selected="@(Model.Status == OrderStatus.Confirmed)">Đã xác nhận</option>
+                                <option value="2" selected="@(Model.Status == OrderStatus.Shipping)">Đang giao hàng</option>
+                                <option value="3" selected="@(Model.Status == OrderStatus.Delivered)">Đã giao hàng</option>
+                                <option value="4" selected="@(Model.Status == OrderStatus.Cancelled)">Đã hủy</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </form>
+                    </div>
+                }
+
+                <div class="d-flex justify-content-between mt-4">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </a>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                                <i class="fas fa-edit"></i> Sửa
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Xóa
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a asp-action="MyOrders" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
