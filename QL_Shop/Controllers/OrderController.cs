@@ -86,6 +86,7 @@ namespace QL_Shop.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            ViewBag.Products = _context.Products.ToList();
             return View();
         }
 

@@ -52,7 +52,7 @@ namespace QL_Shop.Controllers
         // GET: Product/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewBag.Categories = _context.Categories.ToList();
             return View();
         }
 
@@ -89,6 +89,7 @@ namespace QL_Shop.Controllers
             }
             
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.Categories = _context.Categories.ToList();
             return View(product);
         }
 
@@ -105,8 +106,7 @@ namespace QL_Shop.Controllers
             {
                 return NotFound();
             }
-            
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.Categories = _context.Categories.ToList();
             return View(product);
         }
 
@@ -172,6 +172,7 @@ namespace QL_Shop.Controllers
             }
             
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.Categories = _context.Categories.ToList();
             return View(product);
         }
 

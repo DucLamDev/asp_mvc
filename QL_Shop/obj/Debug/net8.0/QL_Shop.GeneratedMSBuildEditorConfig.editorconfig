@@ -17,75 +17,99 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = QL_Shop
 build_property.RootNamespace = QL_Shop
-build_property.ProjectDir = C:\Users\Admin\Desktop\QL_shop\QL_Shop\
+build_property.ProjectDir = C:\Users\Administrator\Desktop\asp_mvc\QL_Shop\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Admin\Desktop\QL_shop\QL_Shop
+build_property.MSBuildProjectDirectory = C:\Users\Administrator\Desktop\asp_mvc\QL_Shop
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Account/Login.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Account/Register.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Home/Index.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Account/UserManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxVc2VyTWFuYWdlbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Order/Details.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Order/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Order/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Order/Index.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Order/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Order/Invoice.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Order/Invoice.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcSW52b2ljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Product/Create.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Product/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Product/Delete.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Product/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Product/Details.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Product/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Product/Edit.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Product/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Product/Index.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Report/Sales.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Report/Categories.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0XENhdGVnb3JpZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Report/Inventory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0XEludmVudG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Report/Products.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0XFByb2R1Y3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Report/Sales.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0XFNhbGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Shared/_Layout.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/_ViewImports.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/QL_shop/QL_Shop/Views/_ViewStart.cshtml]
+[C:/Users/Administrator/Desktop/asp_mvc/QL_Shop/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

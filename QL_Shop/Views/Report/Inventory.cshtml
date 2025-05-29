@@ -1,0 +1,26 @@
+@model IEnumerable<QL_Shop.Models.Product>
+@{
+    ViewData["Title"] = "Báo cáo tồn kho";
+}
+<div class="container mt-4">
+    <h2 class="mb-4">Báo cáo tồn kho</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Danh mục</th>
+                <th>Tồn kho</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Category?.Name</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div> 

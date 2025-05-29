@@ -1,0 +1,126 @@
+@model QL_Shop.Models.Order
+@using QL_Shop.Models
+@{
+    ViewData["Title"] = "Tạo đơn hàng mới";
+    var products = ViewBag.Products as List<Product> ?? new List<Product>();
+}
+<div class="container mt-4">
+    <h2 class="mb-4">Tạo đơn hàng mới</h2>
+    <form id="orderForm" asp-action="Create" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="CustomerName" class="form-label required"></label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Address" class="form-label required"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label required"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label required"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Notes" class="form-label"></label>
+                    <textarea asp-for="Notes" class="form-control"></textarea>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5>Chọn sản phẩm</h5>
+                @if (products.Count == 0)
+                {
+                    <div class="alert alert-warning">Không có sản phẩm nào trong hệ thống. Vui lòng thêm sản phẩm trước khi tạo đơn hàng.</div>
+                }
+                else
+                {
+                <table class="table table-bordered" id="productsTable">
+                    <thead>
+                        <tr>
+                            <th style="width:40%">Sản phẩm</th>
+                            <th style="width:20%">Giá</th>
+                            <th style="width:20%">Số lượng</th>
+                            <th style="width:15%">Thành tiền</th>
+                            <th style="width:5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderDetailsBody">
+                        <tr>
+                            <td>
+                                <select class="form-select product-select" name="OrderDetails[0].ProductId" required>
+                                    <option value="">-- Chọn sản phẩm --</option>
+                                    @foreach (var p in products)
+                                    {
+                                        <option value="@p.Id" data-price="@p.Price">@p.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td class="product-price">0</td>
+                            <td><input type="number" name="OrderDetails[0].Quantity" class="form-control quantity-input" min="1" value="1" required /></td>
+                            <td class="line-total">0</td>
+                            <td><button type="button" class="btn btn-danger btn-sm remove-row"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-success mb-2" id="addProductRow"><i class="fas fa-plus"></i> Thêm sản phẩm</button>
+                <div class="mb-3 text-end">
+                    <strong>Tổng tiền: <span id="orderTotal">0</span> VNĐ</strong>
+                </div>
+                }
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" @(products.Count == 0 ? "disabled" : "")>Lưu đơn hàng</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Quay lại</a>
+    </form>
+</div>
+@section Scripts {
+    <script>
+        function updatePrices() {
+            let total = 0;
+            $("#orderDetailsBody tr").each(function (i, row) {
+                let select = $(row).find('.product-select');
+                let price = parseFloat(select.find('option:selected').data('price')) || 0;
+                let qty = parseInt($(row).find('.quantity-input').val()) || 1;
+                let lineTotal = price * qty;
+                $(row).find('.product-price').text(price.toLocaleString());
+                $(row).find('.line-total').text(lineTotal.toLocaleString());
+                total += lineTotal;
+            });
+            $('#orderTotal').text(total.toLocaleString());
+        }
+        $(document).on('change', '.product-select, .quantity-input', updatePrices);
+        $(document).on('click', '.remove-row', function () {
+            if ($('#orderDetailsBody tr').length > 1) {
+                $(this).closest('tr').remove();
+                updatePrices();
+            }
+        });
+        $('#addProductRow').click(function () {
+            let idx = $('#orderDetailsBody tr').length;
+            let row = `<tr>
+                <td>
+                    <select class="form-select product-select" name="OrderDetails[${idx}].ProductId" required>
+                        <option value="">-- Chọn sản phẩm --</option>
+                        ${$('.product-select:first').html()}
+                    </select>
+                </td>
+                <td class="product-price">0</td>
+                <td><input type="number" name="OrderDetails[${idx}].Quantity" class="form-control quantity-input" min="1" value="1" required /></td>
+                <td class="line-total">0</td>
+                <td><button type="button" class="btn btn-danger btn-sm remove-row"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+            $('#orderDetailsBody').append(row);
+        });
+        $(document).ready(updatePrices);
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

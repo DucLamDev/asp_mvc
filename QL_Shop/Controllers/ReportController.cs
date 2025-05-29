@@ -7,6 +7,7 @@ using QL_Shop.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace QL_Shop.Controllers
 {
@@ -56,16 +57,12 @@ namespace QL_Shop.Controllers
         // GET: Report/Products
         public async Task<IActionResult> Products(DateTime? startDate, DateTime? endDate)
         {
-            // Default to current month if dates not provided
             if (!startDate.HasValue)
                 startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            
             if (!endDate.HasValue)
                 endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
-
             ViewData["StartDate"] = startDate.Value.ToString("yyyy-MM-dd");
             ViewData["EndDate"] = endDate.Value.ToString("yyyy-MM-dd");
-
             var productSales = await _context.OrderDetails
                 .Include(od => od.Order)
                 .Include(od => od.Product)
@@ -80,23 +77,18 @@ namespace QL_Shop.Controllers
                 })
                 .OrderByDescending(ps => ps.Revenue)
                 .ToListAsync();
-
-            return View(productSales);
+            return View(productSales ?? new List<ProductSalesViewModel>());
         }
 
         // GET: Report/Categories
         public async Task<IActionResult> Categories(DateTime? startDate, DateTime? endDate)
         {
-            // Default to current month if dates not provided
             if (!startDate.HasValue)
                 startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            
             if (!endDate.HasValue)
                 endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
-
             ViewData["StartDate"] = startDate.Value.ToString("yyyy-MM-dd");
             ViewData["EndDate"] = endDate.Value.ToString("yyyy-MM-dd");
-
             var categorySales = await _context.OrderDetails
                 .Include(od => od.Order)
                 .Include(od => od.Product)
@@ -112,8 +104,7 @@ namespace QL_Shop.Controllers
                 })
                 .OrderByDescending(cs => cs.Revenue)
                 .ToListAsync();
-
-            return View(categorySales);
+            return View(categorySales ?? new List<CategorySalesViewModel>());
         }
 
         // GET: Report/Inventory
@@ -124,8 +115,7 @@ namespace QL_Shop.Controllers
                 .OrderBy(p => p.Category.Name)
                 .ThenBy(p => p.Name)
                 .ToListAsync();
-
-            return View(products);
+            return View(products ?? new List<Product>());
         }
 
         // GET: Report/DownloadSalesReport

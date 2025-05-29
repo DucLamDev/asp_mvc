@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E7wDMqtpDQ98txgll6xDPOZ5Ei69fNBl0w0xtaj/9A8=",
+  "Hash": "uR+Td7Ble1TUlWrHv+8qZU9fABMO8kxn2XCc/c8y1zU=",
   "Source": "QL_Shop",
   "BasePath": "_content/QL_Shop",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "QL_Shop\\wwwroot",
       "Source": "QL_Shop",
-      "ContentRoot": "C:\\Users\\Admin\\Desktop\\QL_shop\\QL_Shop\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Administrator\\Desktop\\asp_mvc\\QL_Shop\\wwwroot\\",
       "BasePath": "_content/QL_Shop",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Admin\\Desktop\\QL_shop\\QL_Shop\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\Administrator\\Desktop\\asp_mvc\\QL_Shop\\wwwroot\\css\\site.css",
       "SourceId": "QL_Shop",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Admin\\Desktop\\QL_shop\\QL_Shop\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Administrator\\Desktop\\asp_mvc\\QL_Shop\\wwwroot\\",
       "BasePath": "_content/QL_Shop",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\Admin\\Desktop\\QL_shop\\QL_Shop\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\Administrator\\Desktop\\asp_mvc\\QL_Shop\\wwwroot\\js\\site.js",
       "SourceId": "QL_Shop",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Admin\\Desktop\\QL_shop\\QL_Shop\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Administrator\\Desktop\\asp_mvc\\QL_Shop\\wwwroot\\",
       "BasePath": "_content/QL_Shop",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
